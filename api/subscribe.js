@@ -73,6 +73,10 @@ export default async function handler(req, res) {
     const mlApiKey = process.env.MAILERLITE_API_KEY;
     const mlGroupId = process.env.MAILERLITE_GROUP_ID || '198173448779859708'; // Autumn Fomo - Buyers
     
+    console.log('MailerLite API Key exists:', !!mlApiKey);
+    console.log('MailerLite API Key length:', mlApiKey ? mlApiKey.length : 0);
+    console.log('MailerLite Group ID:', mlGroupId);
+    
     if (mlApiKey) {
       try {
         const subscriberData = {
