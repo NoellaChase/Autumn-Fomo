@@ -2,7 +2,7 @@
   "name": "autumn-fomo",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Static site - no build needed'"
+    "build": "bash build.sh"
   },
   "dependencies": {
     "nodemailer": "^6.9.0",
