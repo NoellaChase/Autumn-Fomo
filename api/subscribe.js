@@ -252,9 +252,13 @@ async function uploadToGoogleDrive(filePath, firstName) {
     credentials = require(credentialsPath);
   }
   
+  // Use domain-wide delegation to impersonate Noella's account
   const auth = new google.auth.GoogleAuth({
     credentials: credentials,
-    scopes: ['https://www.googleapis.com/auth/drive']
+    scopes: ['https://www.googleapis.com/auth/drive'],
+    clientOptions: {
+      subject: 'noellachasedesignz@gmail.com'
+    }
   });
   
   const drive = google.drive({ version: 'v3', auth });
