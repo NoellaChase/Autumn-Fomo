@@ -84,8 +84,7 @@ export default async function handler(req, res) {
           fields: {
             name: firstName,
             certificate_url: certificateUrl || ''
-          },
-          groups: [mlGroupId.toString()]
+          }
         };
 
         const mlResponse = await fetch('https://connect.mailerlite.com/api/subscribers', {
@@ -102,6 +101,22 @@ export default async function handler(req, res) {
         results.mailerliteStatus = mlResponse.status;
         results.mailerliteError = mlData.message || null;
 
+        // Add subscriber to group
+        if (results.mailerlite && mlData.data && mlData.data.id) {
+          try {
+            const groupResponse = await fetch(`https://connect.mailerlite.com/api/subscribers/${mlData.data.id}/groups/${mlGroupId}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${mlApiKey}`
+              }
+            });
+            console.log('Group assignment status:', groupResponse.status);
+          } catch (groupError) {
+            console.error('Group assignment error:', groupError);
+          }
+        }
+
         if (mlResponse.status === 409) {
           // Subscriber already exists, update them
           const updateResponse = await fetch(`https://connect.mailerlite.com/api/subscribers/${email}`, {
@@ -114,8 +129,7 @@ export default async function handler(req, res) {
               fields: {
                 name: firstName,
                 certificate_url: certificateUrl || ''
-              },
-              groups: [mlGroupId]
+              }
             })
           });
           const updateData = await updateResponse.json().catch(() => ({}));
