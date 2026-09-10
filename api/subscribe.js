@@ -202,15 +202,27 @@ async function generateAndUploadCertificate(firstName) {
   
   // Copy template and we'll add text later
   const templatePath = path.join(process.cwd(), 'public', 'autumn-certificate-template.jpg');
+  
+  // Check if template exists
+  if (!fs.existsSync(templatePath)) {
+    console.log('Certificate template not found, skipping certificate generation');
+    return null;
+  }
+  
   fs.copyFileSync(templatePath, outputPath);
   
-  // Upload to Google Drive
-  const driveUrl = await uploadToGoogleDrive(outputPath, firstName);
-  
-  // Clean up temp file
-  fs.unlinkSync(outputPath);
-  
-  return driveUrl;
+  // Try to upload to Google Drive, but don't fail if it doesn't work
+  try {
+    const driveUrl = await uploadToGoogleDrive(outputPath, firstName);
+    // Clean up temp file
+    fs.unlinkSync(outputPath);
+    return driveUrl;
+  } catch (error) {
+    console.log('Google Drive upload failed, returning local path:', error.message);
+    // Clean up temp file
+    fs.unlinkSync(outputPath);
+    return null;
+  }
 }
 
 // Upload file to Google Drive and make it publicly viewable
