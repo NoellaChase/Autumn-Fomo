@@ -92,9 +92,14 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify(subscriberData)
         });
+        
+        const mlData = await mlResponse.json().catch(() => ({}));
         results.mailerlite = mlResponse.ok || mlResponse.status === 200;
+        results.mailerliteStatus = mlResponse.status;
+        results.mailerliteError = mlData.message || null;
 
         if (mlResponse.status === 409) {
+          // Subscriber already exists, update them
           const updateResponse = await fetch(`https://connect.mailerlite.com/api/subscribers/${email}`, {
             method: 'PUT',
             headers: {
@@ -105,10 +110,14 @@ export default async function handler(req, res) {
               fields: {
                 name: firstName,
                 certificate_url: certificateUrl || ''
-              }
+              },
+              groups: [mlGroupId]
             })
           });
+          const updateData = await updateResponse.json().catch(() => ({}));
           results.mailerlite = updateResponse.ok || updateResponse.status === 200;
+          results.mailerliteStatus = updateResponse.status;
+          results.mailerliteError = updateData.message || null;
         }
       } catch (e) {
         console.error('MailerLite error:', e);
