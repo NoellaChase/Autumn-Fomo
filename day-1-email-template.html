@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Autumn FOMO Certificate Has Arrived 🍂</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #ffffff;
+            font-size: 28px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .audio-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            color: white;
+        }
+        .audio-section h2 {
+            margin: 0 0 15px 0;
+            font-size: 22px;
+        }
+        .audio-section p {
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        audio {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+        }
+        .certificate-preview {
+            background-color: #fdf6f0;
+            border: 3px solid #d35400;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .certificate-preview h3 {
+            color: #d35400;
+            font-size: 24px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .certificate-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(255,107,53,0.3);
+        }
+        .social-section {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .social-section h2 {
+            color: #333;
+            margin: 0 0 15px 0;
+        }
+        .social-section p {
+            color: #666;
+            margin: 0 0 20px 0;
+        }
+        .story-preview {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 20px auto;
+            max-width: 300px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(245,87,108,0.3);
+        }
+        .story-preview h3 {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .story-preview .name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .story-preview .badge {
+            display: inline-block;
+            background: white;
+            color: #f5576c;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .download-story-btn {
+            display: inline-block;
+            background: #e1306c;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .tomorrow-teaser {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍂 Your Autumn FOMO Certificate Has Arrived</h1>
+        </div>
+        
+        <div class="content">
+            <p class="greeting">Welcome to Autumn FOMO — starting September 15, 2026.</p>
+            
+            <p>Before we do anything else, you need this:</p>
+            
+            <!-- Certificate Section -->
+            <div class="certificate-preview">
+                <h3>📜 Certificate of Permission</h3>
+                <div class="certificate-text">
+                    <p><strong>This certifies that {{subscriber.name}} is officially permitted to:</strong></p>
+                    <p>✓ Slow down and savor the season<br>
+                    ✓ Skip the hustle and embrace cozy<br>
+                    ✓ Say no to autumn overwhelm<br>
+                    ✓ Rest without guilt<br>
+                    ✓ Enjoy pumpkin spice in peace</p>
+                    <p><em>This permission is valid for the entire autumn season and may be renewed indefinitely.</em></p>
+                </div>
+                <a href="{{certificate_url}}" class="download-btn" download>
+                    📥 Download Your Personalized Certificate
+                </a>
+                <p style="font-size: 13px; color: #999; margin-top: 10px;">
+                    Your personalized certificate with your name is ready!
+                </p>
+            </div>
+            
+            <!-- Social Media Story Template Section -->
+            <div class="social-section">
+                <h2>📱 Share Your Permission</h2>
+                <p>Let the world know you're officially doing nothing. Share this on your Instagram Story!</p>
+                
+                <div class="story-preview">
+                    <h3>🍂 OFFICIALLY 🍂</h3>
+                    <p style="font-size: 16px; margin: 10px 0;">embracing autumn slowness</p>
+                    <div class="name">{{subscriber.name}}</div>
+                    <span class="badge">#AutumnFOMO</span>
+                </div>
+                
+                <a href="https://your-domain.com/downloads/autumn-story-template.png" class="download-story-btn" download>
+                    📲 Download Story Template
+                </a>
+                <p style="font-size: 13px; color: #999; margin-top: 15px;">
+                    Tag @NoellaChaseDesignz — I'll reshare!
+                </p>
+            </div>
+            
+            <div class="tomorrow-teaser">
+                <strong>Tomorrow:</strong> A personal audio message from me — permission to slow down, straight to your ears. 🎧
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Autumn FOMO: 25 Days of Permission to Slow Down<br>
+            © 2025 Noella Chase Designz<br>
+            <small>Starting September 15, 2026</small></p>
+        </div>
+    </div>
+</body>
+</html>

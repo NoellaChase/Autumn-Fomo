@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Image Preview</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #2d2a26;
+            color: white;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #CC5500;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .option {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .option-header {
+            background: #800020;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .option-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .option-desc {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+        .option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .overlay-preview {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 4rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            max-width: 600px;
+        }
+        .overlay-preview h2 {
+            font-size: 2.5rem;
+            color: #800020;
+            margin: 0 0 1rem;
+        }
+        .overlay-preview p {
+            font-size: 1.2rem;
+            color: #3d2817;
+            margin: 0;
+        }
+        .verdict {
+            background: #f5f5dc;
+            padding: 1.5rem;
+            text-align: center;
+            color: #2d2a26;
+        }
+        .pros {
+            color: #228B22;
+            font-weight: bold;
+        }
+        .cons {
+            color: #CC5500;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍂 Autumn Unrushed - Hero Image Options</h1>
+    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">
+        Here are the top 2 autumn images that match your "cozy, unrushed" vibe.
+    </p>
+
+    <!-- Option 1 -->
+    <div class="option">
+        <div class="option-header">
+            <h3 class="option-title">Option 1: Forest Path in Autumn</h3>
+            <p class="option-desc">Peaceful, natural, inviting autumn scene</p>
+        </div>
+        <div class="image-container">
+            <img src="images/option-3-autumn-cozy.jpg" alt="Autumn forest path">
+            <div class="overlay-preview">
+                <h2>Autumn Unrushed</h2>
+                <p>25 Days of Permission to Actually Enjoy Fall</p>
+            </div>
+        </div>
+        <div class="verdict">
+            <p><span class="pros">✓ PROS:</span> Natural, calming, not staged, beautiful fall colors</p>
+            <p><span class="cons">⚠ CONSIDER:</span> Outdoor scene (vs. indoor cozy vibe)</p>
+        </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="option">
+        <div class="option-header">
+            <h3 class="option-title">Option 2: Cozy Blanket & Autumn Vibes</h3>
+            <p class="option-desc">Warm, intimate, hygge-inspired scene</p>
+        </div>
+        <div class="image-container">
+            <img src="images/option-5-cozy-blanket.jpg" alt="Cozy autumn blanket scene">
+            <div class="overlay-preview">
+                <h2>Autumn Unrushed</h2>
+                <p>25 Days of Permission to Actually Enjoy Fall</p>
+            </div>
+        </div>
+        <div class="verdict">
+            <p><span class="pros">✓ PROS:</span> Very cozy, matches "stay home" message, warm tones</p>
+            <p><span class="cons">⚠ CONSIDER:</span> Close-up/intimate perspective</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 4rem; padding: 2rem; background: #800020; border-radius: 12px;">
+        <h3 style="margin: 0 0 1rem;">Which one speaks to you?</h3>
+        <p style="margin: 0; opacity: 0.9; font-size: 1.1rem;">
+            Let me know which option (1 or 2) and I'll add it to your landing page immediately.
+        </p>
+    </div>
+</body>
+</html>

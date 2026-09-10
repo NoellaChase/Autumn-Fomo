@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Day 1 - Social Templates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .templates {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        /* Instagram Story */
+        .ig-story {
+            width: 280px;
+            height: 500px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd93d 100%);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .ig-story .sparkles { font-size: 40px; margin-bottom: 20px; }
+        .ig-story .officially { font-size: 32px; font-weight: 900; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .ig-story .doing-nothing { font-size: 18px; margin: 15px 0; }
+        .ig-story .today { font-size: 36px; font-weight: 700; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .ig-story .name-box { background: rgba(255,255,255,0.25); border-radius: 15px; padding: 15px 25px; margin: 25px 0; border: 2px solid rgba(255,255,255,0.4); }
+        .ig-story .name-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        .ig-story .name { font-size: 22px; font-weight: 700; margin-top: 5px; }
+        .ig-story .badge { background: white; color: #ff6b35; padding: 10px 20px; border-radius: 20px; font-weight: 800; font-size: 14px; }
+        
+        /* Facebook Feed */
+        .fb-feed {
+            width: 400px;
+            height: 210px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 10px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .fb-feed-content { flex: 1; }
+        .fb-feed .officially { font-size: 26px; font-weight: 900; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .fb-feed .subtitle { font-size: 15px; margin-top: 10px; }
+        .fb-feed .badge { background: white; color: #ff6b35; padding: 8px 16px; border-radius: 15px; font-weight: 800; font-size: 12px; display: inline-block; margin-top: 12px; }
+        .fb-feed .graphic { font-size: 80px; margin-left: 20px; }
+        
+        /* Facebook Square */
+        .fb-square {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .fb-square .emoji { font-size: 60px; margin-bottom: 15px; }
+        .fb-square .title { font-size: 28px; font-weight: 900; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 10px; }
+        .fb-square .subtitle { font-size: 16px; margin-bottom: 20px; }
+        .fb-square .cta { background: white; color: #764ba2; padding: 12px 25px; border-radius: 20px; font-weight: 800; font-size: 14px; }
+        
+        .label { text-align: center; margin-top: 10px; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>📱 Day 1 Social Media Templates</h1>
+    
+    <div class="templates">
+        <div>
+            <div class="ig-story">
+                <div class="sparkles">✨✨✨</div>
+                <div class="officially">OFFICIALLY</div>
+                <div class="doing-nothing">doing nothing</div>
+                <div class="today">TODAY</div>
+                <div class="name-box">
+                    <div class="name-label">Permission granted to</div>
+                    <div class="name">Your Name</div>
+                </div>
+                <div class="badge">#AutumnUnrushed</div>
+            </div>
+            <p class="label">Instagram Story (1080×1920)</p>
+        </div>
+        
+        <div>
+            <div class="fb-feed">
+                <div class="fb-feed-content">
+                    <div class="officially">OFFICIALLY DOING NOTHING TODAY</div>
+                    <div class="subtitle">I give myself permission to opt out of the busy autumn.</div>
+                    <span class="badge">#AutumnUnrushed</span>
+                </div>
+                <div class="graphic">🧘‍♀️</div>
+            </div>
+            <p class="label">Facebook Feed (1200×630)</p>
+        </div>
+        
+        <div>
+            <div class="fb-square">
+                <div class="emoji">📜</div>
+                <div class="title">PERMISSION<br>GRANTED</div>
+                <div class="subtitle">To do absolutely nothing today</div>
+                <div class="cta">Join Autumn Unrushed</div>
+            </div>
+            <p class="label">Facebook Square (1080×1080)</p>
+        </div>
+    </div>
+</body>
+</html>

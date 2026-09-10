@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080px, initial-scale=1.0">
+    <title>Autumn FOMO - Official Permission Certificate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            width: 1080px;
+            height: 1080px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .certificate {
+            background: #FFF8DC;
+            width: 1080px;
+            height: 1080px;
+            border-radius: 0;
+            padding: 70px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 
+                        inset 0 0 0 8px #D2691E,
+                        inset 0 0 0 16px #FFF8DC,
+                        inset 0 0 0 20px #CD853F;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Decorative autumn leaves */
+        .certificate::before {
+            content: '🍂';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 60px;
+            opacity: 0.3;
+            transform: rotate(-15deg);
+        }
+
+        .certificate::after {
+            content: '🍁';
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 60px;
+            opacity: 0.3;
+            transform: rotate(15deg);
+        }
+
+        .header {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #D2691E 0%, #B8551A 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .trophy {
+            font-size: 80px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 900;
+            color: #8B4513;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #A0522D;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .recipient {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: #654321;
+            margin: 25px 0;
+            font-weight: 700;
+        }
+
+        .recipient-name {
+            border-bottom: 3px solid #D2691E;
+            padding-bottom: 5px;
+            display: inline-block;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .permissions {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 35px 50px;
+            margin: 30px 0;
+            text-align: left;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .permissions h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #8B4513;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .permissions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .permissions li {
+            font-size: 20px;
+            color: #654321;
+            padding: 12px 0;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .permissions li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-size: 28px;
+            color: #228B22;
+            font-weight: bold;
+        }
+
+        .validity {
+            font-style: italic;
+            color: #A0522D;
+            font-size: 19px;
+            margin-top: 25px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 25px;
+            border-top: 2px solid #D2691E;
+            z-index: 1;
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #8B4513;
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 17px;
+            color: #A0522D;
+            letter-spacing: 1px;
+        }
+
+        .brand {
+            font-size: 22px;
+            color: #D2691E;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Corner decorations */
+        .corner-leaf {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+        }
+
+        .corner-leaf.top-left {
+            top: 60px;
+            left: 60px;
+            transform: rotate(-25deg);
+        }
+
+        .corner-leaf.top-right {
+            top: 60px;
+            right: 60px;
+            transform: rotate(25deg);
+        }
+
+        .corner-leaf.bottom-left {
+            bottom: 60px;
+            left: 60px;
+            transform: rotate(25deg);
+        }
+
+        .corner-leaf.bottom-right {
+            bottom: 60px;
+            right: 60px;
+            transform: rotate(-25deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <span class="corner-leaf top-left">🍂</span>
+        <span class="corner-leaf top-right">🍁</span>
+        <span class="corner-leaf bottom-left">🍁</span>
+        <span class="corner-leaf bottom-right">🍂</span>
+
+        <div class="header">
+            <div class="badge">AUTUMN FOMO</div>
+            <div class="trophy">🏆</div>
+            <h1>Certificate of<br>Permission</h1>
+            <p class="subtitle">Officially authorized to exist without optimizing</p>
+        </div>
+
+        <div class="recipient">
+            This certifies that <span class="recipient-name">[Your Name]</span>
+        </div>
+
+        <div class="permissions">
+            <h3>is hereby granted full permission to:</h3>
+            <ul>
+                <li>Do absolutely nothing today</li>
+                <li>Cancel plans without explanation</li>
+                <li>Stay home on a cozy fall day</li>
+                <li>Say "I'm good" to invitations</li>
+                <li>Exist without optimizing anything</li>
+            </ul>
+            <p class="validity">
+                This permission is valid for the entire autumn season<br>
+                and may be renewed indefinitely.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p class="signature">Noella Chase</p>
+            <p class="title">Founder & Permission Granter</p>
+            <p class="brand">AUTUMN FOMO</p>
+        </div>
+    </div>
+</body>
+</html>

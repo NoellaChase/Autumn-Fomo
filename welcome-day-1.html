@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Day 1: Permission Granted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f0e8;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-box {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: rgba(201, 176, 55, 0.15);
+            color: #c9b037;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2d2a26;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #5a5650;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Voice Memo Section */
+        .voice-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .voice-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .voice-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .audio-player {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .audio-player:hover {
+            transform: scale(1.02);
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #764ba2;
+            font-size: 1.25rem;
+        }
+
+        .audio-text {
+            text-align: left;
+        }
+
+        .audio-text .label {
+            font-weight: 600;
+        }
+
+        .audio-text .time {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Certificate Section */
+        .certificate-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
+            border: 3px solid #c9b037;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .certificate-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: #c9b037;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-section h3 {
+            font-size: 1.1rem;
+            color: #5a5650;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .permissions {
+            text-align: left;
+            max-width: 350px;
+            margin: 0 auto 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .permissions li {
+            color: #5a5650;
+            padding: 0.6rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            list-style: none;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .permissions li:last-child {
+            border-bottom: none;
+        }
+
+        .permissions li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5a9a8a;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .signature-line {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(201, 176, 55, 0.3);
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #c9b037;
+            font-style: italic;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        /* FANCY SOCIAL TEMPLATES */
+        .social-section {
+            margin: 3rem 0;
+        }
+
+        .social-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #2d2a26;
+        }
+
+        .social-section > p {
+            text-align: center;
+            color: #5a5650;
+            margin-bottom: 2rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Template 1: Elegant Gold Frame */
+        .template-elegant {
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, #faf8f5 0%, #f0ebe3 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            border: 2px solid #c9b037;
+            box-shadow: 0 10px 40px rgba(201, 176, 55, 0.2);
+        }
+
+        .template-elegant::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(201, 176, 55, 0.4);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .template-elegant .seal {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #c9b037 0%, #e07a3d 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(201, 176, 55, 0.4);
+        }
+
+        .template-elegant .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #2d2a26;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .template-elegant .subtitle {
+            font-size: 0.9rem;
+            color: #5a5650;
+            font-style: italic;
+        }
+
+        .template-elegant .badge {
+            background: #c9b037;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        /* Template 2: Modern Gradient */
+        .template-modern {
+            aspect-ratio: 9/16;
+            background: linear-gradient(180deg, #ff6b35 0%, #f7931e 50%, #ffd93d 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-modern::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .template-modern .top-text {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        .template-modern .main-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .template-modern .main-text span {
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .template-modern .bottom-section {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .template-modern .name-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .template-modern .name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+
+        .template-modern .verified {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* Template 3: Minimalist Quote */
+        .template-quote {
+            aspect-ratio: 1;
+            background: #2d2a26;
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .template-quote .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: #c9b037;
+            opacity: 0.3;
+            line-height: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .template-quote .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-quote .author {
+            font-size: 0.85rem;
+            color: #c9b037;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .template-quote .hashtag {
+            position: absolute;
+            bottom: 1.5rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Template 4: Story Style */
+        .template-story {
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .template-story .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-story .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .template-story .subtext {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .template-story .swipe-up {
+            background: white;
+            color: #764ba2;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .template-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+
+        .download-all-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto 0;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Tomorrow Teaser */
+        .tomorrow-teaser {
+            background: rgba(90, 154, 138, 0.1);
+            border-left: 3px solid #5a9a8a;
+            padding: 1.25rem;
+            margin: 2rem 0;
+            color: #5a5650;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tomorrow-teaser strong {
+            color: #5a9a8a;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: #8a8580;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-box">S</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <span class="day-badge">Day 1 of 25</span>
+        </div>
+        
+        <h1>Permission Granted</h1>
+        <p class="subtitle">Welcome to Autumn Unrushed. Today, we start with the most radical act of all: giving yourself permission to do nothing.</p>
+        
+        <!-- VOICE MEMO -->
+        <div class="voice-section">
+            <h2>🎧 A Personal Message From Me</h2>
+            <p>Take 2 minutes. Listen. Let me give you permission personally.</p>
+            <audio controls style="width: 100%; max-width: 400px; margin-top: 1rem;">
+                <source src="audio/day1-voice-memo.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.75rem;">1:44</p>
+        </div>
+        
+        <!-- CERTIFICATE -->
+        <div class="certificate-section">
+            <h2>📜 Official Permission Certificate</h2>
+            <h3>Print this. Fill in your name. Keep it visible.</h3>
+            
+            <ul class="permissions">
+                <li>Do absolutely nothing today</li>
+                <li>Skip the party without guilt</li>
+                <li>Stay home and enjoy the quiet</li>
+                <li>Ignore FOMO completely</li>
+                <li>Rest without apology</li>
+            </ul>
+            
+            <div class="signature-line">
+                <div class="signature">Noella Chase</div>
+                <p style="font-size: 0.85rem; color: #8a8580; margin-top: 0.5rem;">Permission Granted</p>
+            </div>
+            
+            <a href="certificate/officially-doing-nothing-certificate.pdf" class="download-btn" download>📥 Download Certificate (PDF)</a>
+        </div>
+        
+        <!-- SOCIAL TEMPLATES -->
+        <div class="social-section">
+            <h2>✨ Share Your Permission</h2>
+            <p>Download these templates, add your name, and post to your social media. Tag me on <a href="https://www.facebook.com/noellachasedesignz/" target="_blank" style="color: #1877f2; text-decoration: none; font-weight: 600;">Facebook</a> — I'll reshare!</p>
+            
+            <!-- Minimalist Quote -->
+            <div style="background: #2d2a26; border-radius: 20px; padding: 3rem 2rem; text-align: center; color: white; margin: 2rem 0; position: relative;">
+                <div style="font-family: 'Playfair Display', serif; font-size: 5rem; color: #c9b037; opacity: 0.3; line-height: 0.5; margin-bottom: 1rem;">"</div>
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; line-height: 1.5; margin-bottom: 1.5rem;">I give myself permission to opt out of the busy autumn.</p>
+                <p style="font-size: 0.9rem; color: #c9b037; text-transform: uppercase; letter-spacing: 2px;">— Autumn Unrushed</p>
+                <p style="position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: rgba(255,255,255,0.5);">#AutumnUnrushed</p>
+            </div>
+            
+            <div class="templates-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Instagram Template -->
+                <div style="text-align: center;">
+                    <img src="day1-assets/instagram-template.jpg" alt="Instagram Permission Template" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <p class="template-label">Instagram Post (Square)</p>
+                    <a href="day1-assets/instagram-permission-slip.pdf" download style="display: inline-block; margin-top: 0.5rem; color: #e07a3d; text-decoration: none; font-weight: 500;">📥 Download Template (PDF)</a>
+                </div>
+                
+                <!-- Facebook Template -->
+                <div style="text-align: center;">
+                    <img src="day1-assets/facebook-template.jpg" alt="Facebook Permission Template" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <p class="template-label">Facebook Post (Square)</p>
+                    <a href="day1-assets/facebook-permission-slip.pdf" download style="display: inline-block; margin-top: 0.5rem; color: #e07a3d; text-decoration: none; font-weight: 500;">📥 Download Template (PDF)</a>
+                </div>
+            </div>
+            
+            <!-- Certificate -->
+            <div style="background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%); border: 3px solid #c9b037; border-radius: 20px; padding: 2rem; text-align: center; margin: 2rem 0;">
+                <h3 style="font-family: 'Playfair Display', serif; color: #c9b037; margin-bottom: 1rem;">📜 Official Permission Certificate</h3>
+                <p style="color: #5a5650; margin-bottom: 1.5rem;">Print this certificate and fill in your name. Keep it visible as a reminder!</p>
+                <a href="certificate/officially-doing-nothing-certificate.pdf" download class="download-btn">📥 Download Certificate</a>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+                <strong>How to use:</strong> Download the templates, add your name using Canva or any image editor, and post! Or print and write your name by hand.
+            </p>
+        </div>
+        
+        <script>
+            // Check for buyer info from localStorage to personalize greeting
+            const buyerInfo = localStorage.getItem('autumnUnrushedBuyer');
+            
+            if (buyerInfo) {
+                const buyer = JSON.parse(buyerInfo);
+                
+                // Personalized greeting in email will use their name
+                // Templates remain generic for buyers to customize themselves
+                console.log('Welcome back, ' + buyer.firstName);
+            }
+        </script>
+        
+        <!-- TOMORROW TEASER -->
+        <div class="tomorrow-teaser">
+            <strong>Tomorrow:</strong> What to actually say when you want to opt out. (5 copy-paste scripts coming your way!)
+        </div>
+        
+        <div class="footer">
+            <p>Autumn Unrushed — 25 Days of Permission to Actually Enjoy Fall</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">© 2026 Noella Chase</p>
+        </div>
+    </div>
+</body>
+</html>

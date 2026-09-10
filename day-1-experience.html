@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Day 1 Complete Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f0e8;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .email-container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: #2d2a26;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: rgba(201, 176, 55, 0.15);
+            color: #c9b037;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: #5a5650;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Voice Memo Section */
+        .voice-memo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .voice-memo h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .voice-memo p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .audio-player {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .audio-player:hover {
+            transform: scale(1.02);
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #764ba2;
+            font-size: 1.25rem;
+        }
+
+        .audio-text {
+            text-align: left;
+        }
+
+        .audio-text .label {
+            font-weight: 600;
+        }
+
+        .audio-text .time {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .download-link {
+            color: white;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* Certificate Section */
+        .certificate {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
+            border: 3px solid #c9b037;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .certificate h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #c9b037;
+            margin-bottom: 1.5rem;
+        }
+
+        .certificate h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #2d2a26;
+            margin-bottom: 2rem;
+        }
+
+        .permissions {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .permissions li {
+            color: #5a5650;
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            list-style: none;
+        }
+
+        .permissions li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5a9a8a;
+            font-weight: bold;
+        }
+
+        .signature-line {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(201, 176, 55, 0.3);
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #c9b037;
+            font-style: italic;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #2d2a26;
+            margin-bottom: 1rem;
+        }
+
+        .social-section > p {
+            margin-bottom: 2rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Instagram Story */
+        .ig-story {
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd93d 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ig-story .sparkles {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .ig-story .officially {
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+
+        .ig-story .doing-nothing {
+            font-size: 1.1rem;
+            margin: 0.75rem 0;
+        }
+
+        .ig-story .today {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .ig-story .name-box {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .ig-story .name-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .ig-story .name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+
+        .ig-story .badge {
+            background: white;
+            color: #ff6b35;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Facebook Feed */
+        .fb-feed {
+            aspect-ratio: 120/63;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fb-feed-content {
+            flex: 1;
+        }
+
+        .fb-feed .officially {
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+
+        .fb-feed .subtitle {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .fb-feed .badge {
+            background: white;
+            color: #ff6b35;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-top: 0.75rem;
+        }
+
+        .fb-feed .graphic {
+            font-size: 3.5rem;
+            margin-left: 1rem;
+        }
+
+        /* Facebook Square */
+        .fb-square {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .fb-square .emoji {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .fb-square .title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .fb-square .subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .fb-square .cta {
+            background: white;
+            color: #764ba2;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .template-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+
+        .download-story-btn {
+            display: inline-block;
+            background: #e1306c;
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        .tag-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 1rem;
+        }
+
+        /* Tomorrow Teaser */
+        .tomorrow-teaser {
+            background: rgba(90, 154, 138, 0.1);
+            border-left: 3px solid #5a9a8a;
+            padding: 1.25rem;
+            margin: 2rem 0;
+            color: #5a5650;
+        }
+
+        .tomorrow-teaser strong {
+            color: #5a9a8a;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .summary-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: #2d2a26;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .deliverables-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .deliverables-table th {
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .deliverables-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #5a5650;
+        }
+
+        .deliverables-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .format-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .format-audio { background: #e3f2fd; color: #1976d2; }
+        .format-pdf { background: #ffebee; color: #c62828; }
+        .format-image { background: #e8f5e9; color: #2e7d32; }
+
+        .total-value {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .total-value h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .total-value p {
+            color: rgba(255,255,255,0.9);
+            margin: 0.5rem 0 0;
+        }
+
+        .preview-note {
+            background: rgba(201, 176, 55, 0.1);
+            border-left: 3px solid #c9b037;
+            padding: 1rem;
+            margin-top: 2rem;
+            color: #5a5650;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- EMAIL PREVIEW -->
+    <div class="email-container">
+        <div class="logo">
+            <div class="logo-box">25</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <span class="day-badge">Day 1 of 25</span>
+        </div>
+        
+        <h1>Your Official Permission Slip Has Arrived</h1>
+        
+        <p>Welcome to Autumn Unrushed.</p>
+        
+        <p>Before we do anything else, you need this:</p>
+        
+        <!-- Voice Memo -->
+        <div class="voice-memo">
+            <h2>🎧 A Personal Message From Me</h2>
+            <p>Take 2 minutes. Listen. Let me give you permission personally.</p>
+            <div class="audio-player">
+                <div class="play-btn">▶</div>
+                <div class="audio-text">
+                    <div class="label">Play Voice Memo</div>
+                    <div class="time">2:00</div>
+                </div>
+            </div>
+            <a href="#" class="download-link">Can't listen now? Download MP3</a>
+        </div>
+        
+        <!-- Certificate -->
+        <div class="certificate">
+            <h2>🏆 Certificate of Permission</h2>
+            <h3>This certifies that <em>[Your Name]</em> is officially permitted to:</h3>
+            
+            <ul class="permissions">
+                <li>Do absolutely nothing today</li>
+                <li>Cancel plans without explanation</li>
+                <li>Stay home on a sunny day</li>
+                <li>Say "I'm good" to invitations</li>
+                <li>Exist without optimizing</li>
+            </ul>
+            
+            <p style="font-style: italic; color: #8a8580; margin-top: 2rem;">
+                This permission is valid for the entire autumn<br>
+                and may be renewed indefinitely.
+            </p>
+            
+            <div class="signature-line">
+                <p class="signature">Noella Chase</p>
+                <p style="font-size: 0.85rem; color: #8a8580;">Founder, Autumn Unrushed</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center;">
+            <a href="#" class="download-btn">📥 Download Your Certificate (PDF)</a>
+        </p>
+        
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h2>📱 Share Your Permission</h2>
+            <p>Let the world know you're officially doing nothing. Share these on your social media!</p>
+            
+            <div class="templates-grid">
+                <!-- Instagram Story -->
+                <div>
+                    <div class="ig-story">
+                        <div class="sparkles">✨✨✨</div>
+                        <div class="officially">OFFICIALLY</div>
+                        <div class="doing-nothing">doing nothing</div>
+                        <div class="today">TODAY</div>
+                        <div class="name-box">
+                            <div class="name-label">Permission granted to</div>
+                            <div class="name">Your Name</div>
+                        </div>
+                        <div class="badge">#AutumnUnrushed</div>
+                    </div>
+                    <p class="template-label">Instagram Story (1080×1920)</p>
+                </div>
+                
+                <!-- Facebook Feed -->
+                <div>
+                    <div class="fb-feed">
+                        <div class="fb-feed-content">
+                            <div class="officially">OFFICIALLY DOING NOTHING TODAY</div>
+                            <div class="subtitle">I give myself permission to opt out of the busy autumn.</div>
+                            <span class="badge">#AutumnUnrushed</span>
+                        </div>
+                        <div class="graphic">🧘‍♀️</div>
+                    </div>
+                    <p class="template-label">Facebook Feed (1200×630)</p>
+                </div>
+                
+                <!-- Facebook Square -->
+                <div>
+                    <div class="fb-square">
+                        <div class="emoji">📜</div>
+                        <div class="title">PERMISSION<br>GRANTED</div>
+                        <div class="subtitle">To do absolutely nothing today</div>
+                        <div class="cta">Join Autumn Unrushed</div>
+                    </div>
+                    <p class="template-label">Facebook Square (1080×1080)</p>
+                </div>
+            </div>
+            
+            <a href="#" class="download-story-btn">📲 Download All Templates</a>
+            <p class="tag-note">Tag @NoellaChaseDesignz — I'll reshare!</p>
+        </div>
+        
+        <div class="tomorrow-teaser">
+            <strong>Tomorrow:</strong> What to actually say when you want to opt out. (5 copy-paste scripts coming your way!)
+        </div>
+        
+        <div class="preview-note">
+            <strong>Note:</strong> This is a preview of Day 1. The actual email will be personalized with the customer's name and include working download links.
+        </div>
+    </div>
+    
+    <!-- SUMMARY SECTION -->
+    <div class="summary-section">
+        <h2>📦 Day 1 Deliverables Summary</h2>
+        
+        <table class="deliverables-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Format</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Voice Memo</strong></td>
+                    <td><span class="format-badge format-audio">MP3</span></td>
+                    <td>Personal connection from Noella</td>
+                </tr>
+                <tr>
+                    <td><strong>Permission Certificate</strong></td>
+                    <td><span class="format-badge format-pdf">PDF</span></td>
+                    <td>Printable keepsake</td>
+                </tr>
+                <tr>
+                    <td><strong>Instagram Story Template</strong></td>
+                    <td><span class="format-badge format-image">PNG</span></td>
+                    <td>Shareable, viral marketing</td>
+                </tr>
+                <tr>
+                    <td><strong>Facebook Story Template</strong></td>
+                    <td><span class="format-badge format-image">PNG</span></td>
+                    <td>Shareable, viral marketing</td>
+                </tr>
+                <tr>
+                    <td><strong>Facebook Feed Post</strong></td>
+                    <td><span class="format-badge format-image">PNG</span></td>
+                    <td>News feed share</td>
+                </tr>
+                <tr>
+                    <td><strong>Facebook Square Post</strong></td>
+                    <td><span class="format-badge format-image">PNG</span></td>
+                    <td>Feed post, ads</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total-value">
+            <h3>🎯 Total Day 1 Value: 6 Deliverables</h3>
+            <p>1 Audio + 1 PDF + 4 Social Templates</p>
+        </div>
+    </div>
+</body>
+</html>

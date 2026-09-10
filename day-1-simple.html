@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Day 1: Permission Granted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f0e8;
+            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-box {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: rgba(201, 176, 55, 0.15);
+            color: #c9b037;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2d2a26;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #5a5650;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Voice Memo Section */
+        .voice-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .voice-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .voice-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .audio-player {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .audio-player:hover {
+            transform: scale(1.02);
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #764ba2;
+            font-size: 1.25rem;
+        }
+
+        .audio-text {
+            text-align: left;
+        }
+
+        .audio-text .label {
+            font-weight: 600;
+        }
+
+        .audio-text .time {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Certificate Section */
+        .certificate-section {
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
+            border: 3px solid #c9b037;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .certificate-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: #c9b037;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-section h3 {
+            font-size: 1.1rem;
+            color: #5a5650;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .permissions {
+            text-align: left;
+            max-width: 350px;
+            margin: 0 auto 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .permissions li {
+            color: #5a5650;
+            padding: 0.6rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            list-style: none;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        .permissions li:last-child {
+            border-bottom: none;
+        }
+
+        .permissions li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5a9a8a;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .signature-line {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(201, 176, 55, 0.3);
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: #c9b037;
+            font-style: italic;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        /* Tomorrow Teaser */
+        .tomorrow-teaser {
+            background: rgba(90, 154, 138, 0.1);
+            border-left: 3px solid #5a9a8a;
+            padding: 1.25rem;
+            margin: 2rem 0;
+            color: #5a5650;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tomorrow-teaser strong {
+            color: #5a9a8a;
+        }
+
+        /* Simple Share Section */
+        .share-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .share-section h3 {
+            font-size: 1.1rem;
+            color: #2d2a26;
+            margin-bottom: 0.75rem;
+        }
+
+        .share-section p {
+            color: #5a5650;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .share-text {
+            background: white;
+            border: 1px dashed #c9b037;
+            border-radius: 8px;
+            padding: 1rem;
+            font-style: italic;
+            color: #5a5650;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: #8a8580;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-box">S</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <span class="day-badge">Day 1 of 25</span>
+        </div>
+        
+        <h1>Permission Granted</h1>
+        <p class="subtitle">Welcome to Autumn Unrushed. Today, we start with the most radical act of all: giving yourself permission to do nothing.</p>
+        
+        <!-- VOICE MEMO -->
+        <div class="voice-section">
+            <h2>🎧 A Personal Message From Me</h2>
+            <p>Take 2 minutes. Listen. Let me give you permission personally.</p>
+            <div class="audio-player">
+                <div class="play-btn">▶</div>
+                <div class="audio-text">
+                    <div class="label">Play Voice Memo</div>
+                    <div class="time">2:00</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CERTIFICATE -->
+        <div class="certificate-section">
+            <h2>📜 Official Permission Certificate</h2>
+            <h3>Print this. Fill in your name. Keep it visible.</h3>
+            
+            <ul class="permissions">
+                <li>Do absolutely nothing today</li>
+                <li>Skip the party without guilt</li>
+                <li>Stay home and enjoy the quiet</li>
+                <li>Ignore FOMO completely</li>
+                <li>Rest without apology</li>
+            </ul>
+            
+            <div class="signature-line">
+                <div class="signature">Noella Chase</div>
+                <p style="font-size: 0.85rem; color: #8a8580; margin-top: 0.5rem;">Permission Granted</p>
+            </div>
+            
+            <a href="#" class="download-btn">📥 Download Certificate (PDF)</a>
+        </div>
+        
+        <!-- SIMPLE SHARE -->
+        <div class="share-section">
+            <h3>💬 Want to share?</h3>
+            <p>Copy and paste this to your social media:</p>
+            <div class="share-text">
+                "Officially doing nothing today. I give myself permission to opt out of the busy autumn. #AutumnUnrushed"
+            </div>
+            <p style="font-size: 0.85rem; color: #888;">Tag @NoellaChaseDesignz — I'd love to see!</p>
+        </div>
+        
+        <!-- TOMORROW TEASER -->
+        <div class="tomorrow-teaser">
+            <strong>Tomorrow:</strong> What to actually say when you want to opt out. (5 copy-paste scripts coming your way!)
+        </div>
+        
+        <div class="footer">
+            <p>Autumn Unrushed — 25 Days of Permission to Actually Enjoy Fall</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">© 2026 Noella Chase</p>
+        </div>
+    </div>
+</body>
+</html>

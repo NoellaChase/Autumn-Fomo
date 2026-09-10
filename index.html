@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed — 25 Days of Permission to Actually Enjoy Fall</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HP6K5HQ2Z1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HP6K5HQ2Z1');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --burgundy: #800020;
+            --amber: #CC5500;
+            --cream: #F5F5DC;
+            --sage: #87ae73;
+            --chocolate: #3d2817;
+            --text-primary: #2d2a26;
+            --text-secondary: #5a5650;
+            --bg-light: #faf8f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(250, 248, 245, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(128, 0, 32, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--burgundy);
+        }
+
+        .nav-cta {
+            background: var(--amber);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--amber);
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--amber);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 140px 2rem 80px;
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('option-3-autumn-cozy.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--burgundy);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-subtitle {
+            font-size: 1.75rem;
+            color: white;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: white;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--amber);
+            color: white;
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 3px solid var(--amber);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .hero-cta:hover {
+            background: white;
+            color: var(--amber);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section-text {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        /* Problem Section */
+        .problem-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            border-left: 6px solid var(--amber);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .problem-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--chocolate);
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .problem-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .problem-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: var(--amber);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Solution Section */
+        .solution-box {
+            background: linear-gradient(135deg, var(--burgundy) 0%, #5a001a 100%);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 15px 50px rgba(128, 0, 32, 0.3);
+        }
+
+        .solution-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Weeks Breakdown */
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .week-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-top: 5px solid var(--sage);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .week-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .week-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .week-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .week-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .week-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+        }
+
+        /* Who This Is For */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .audience-item {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--sage);
+        }
+
+        .audience-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Email Form */
+        .email-signup {
+            background: linear-gradient(135deg, var(--amber) 0%, #b84e00 100%);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+            box-shadow: 0 15px 50px rgba(204, 85, 0, 0.3);
+        }
+
+        .email-signup h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-signup p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .email-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .email-input {
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .email-submit {
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-submit:hover {
+            background: #5a001a;
+            transform: translateY(-2px);
+        }
+
+        .privacy-note {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--sage);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--burgundy);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--chocolate);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-brand {
+                font-size: 1.1rem;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .container {
+                padding: 60px 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">Autumn Unrushed</div>
+        <a href="#signup" class="nav-cta">Get Started $1.99</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Autumn Unrushed</h1>
+        <h2 class="hero-subtitle">25 Days of Permission to Actually Enjoy Fall</h2>
+        <p class="hero-text">
+            Tired of fall feeling like another to-do list?<br>
+            What if you skipped it all and actually enjoyed autumn instead?
+        </p>
+        <a href="#signup" class="hero-cta">Get Started for Just $1.99 — Starts September 15</a>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- The Problem -->
+        <section class="section">
+            <div class="problem-box">
+                <h2 class="problem-title">Fall used to be cozy. Now it's a competition.</h2>
+                <ul class="problem-list">
+                    <li>The perfectly decorated porch</li>
+                    <li>The homemade apple pie (from scratch, obviously)</li>
+                    <li>The family photo in matching flannel</li>
+                    <li>The "must-do" fall bucket list</li>
+                </ul>
+                <p class="section-text" style="margin-top: 2rem;">
+                    By the time you've done everything you're "supposed" to do, you're too exhausted to enjoy any of it.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Solution -->
+        <section class="section">
+            <div class="solution-box">
+                <h2 class="solution-title">25 days of anti-hustle autumn.</h2>
+                <p style="font-size: 1.15rem; margin-bottom: 3rem;">
+                    Starting September 15, get one email each day with:
+                </p>
+                <div class="solution-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">📜</div>
+                        <div class="feature-text"><strong>Permission slips</strong> — Official certificates to skip the pressure</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🍂</div>
+                        <div class="feature-text"><strong>Cozy rituals</strong> — Small joys that don't require a Pinterest account</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💭</div>
+                        <div class="feature-text"><strong>Reality checks</strong> — For when Instagram makes you feel like you're doing fall wrong</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-text"><strong>Printable goodies</strong> — Wallpapers, checklists, and manifestos</div>
+                    </div>
+                </div>
+                <p style="font-size: 1.2rem; margin-top: 3rem; font-style: italic;">
+                    No guilt. No FOMO. Just autumn on your terms.
+                </p>
+            </div>
+        </section>
+
+        <!-- What You'll Get -->
+        <section class="section">
+            <h2 class="section-title">What You'll Get</h2>
+            <div class="weeks-grid">
+                <div class="week-card">
+                    <h3 class="week-title">Week 1: Permission to Opt Out</h3>
+                    <ul class="week-list">
+                        <li>Skip the pumpkin patch (without the guilt)</li>
+                        <li>Decline the hayride invitation gracefully</li>
+                        <li>Your official "I'm Good at Home" certificate</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <h3 class="week-title">Week 2: Cozy Without the Chaos</h3>
+                    <ul class="week-list">
+                        <li>The 10-minute hygge fix</li>
+                        <li>Hot chocolate that doesn't require a recipe</li>
+                        <li>Permission to wear the same sweater 4 days in a row</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <h3 class="week-title">Week 3: Halloween Without the Headache</h3>
+                    <ul class="week-list">
+                        <li>The "good enough" costume manifesto</li>
+                        <li>Candy bowl confidence (yes, store-bought is fine)</li>
+                        <li>Skip the party scripts</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <h3 class="week-title">Week 4: Thanksgiving Unrushed</h3>
+                    <ul class="week-list">
+                        <li>The "bring store-bought" permission slip</li>
+                        <li>Boundary-setting for family time</li>
+                        <li>Gratitude without the performance</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <h3 class="week-title">Week 5: Carrying It Forward</h3>
+                    <ul class="week-list">
+                        <li>Your personal autumn manifesto</li>
+                        <li>How to keep the slow living into winter</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who This Is For -->
+        <section class="section">
+            <h2 class="section-title">Who This Is For</h2>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <div class="audience-icon">🍁</div>
+                    <p>You love fall but hate the pressure</p>
+                </div>
+                <div class="audience-item">
+                    <div class="audience-icon">🏡</div>
+                    <p>You'd rather stay home than chase the perfect photo</p>
+                </div>
+                <div class="audience-item">
+                    <div class="audience-icon">☕</div>
+                    <p>You want cozy without the chaos</p>
+                </div>
+                <div class="audience-item">
+                    <div class="audience-icon">✨</div>
+                    <p>You're tired of feeling like you're doing fall "wrong"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Signup -->
+        <section class="section" id="signup">
+            <div class="email-signup">
+                <h2>Start September 15</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">25 days of autumn, unrushed.</p>
+                <p style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">Just $1.99</p>
+                <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 2.5rem;">One-time payment · Instant access · All 25 days</p>
+                <div class="email-form">
+                    <a href="https://buy.stripe.com/28E00k5THabJ1vm4RHfQI02" class="email-submit" style="display: block; text-decoration: none; cursor: pointer;">Get Autumn Unrushed Now</a>
+                </div>
+                <p class="privacy-note">Secure payment via Stripe · Money-back guarantee if you’re not satisfied</p>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section">
+            <h2 class="section-title">About Noella</h2>
+            <p class="section-text" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                Hi, I'm Noella. I created <em>Autumn Unrushed</em> because I was tired of fall feeling like a performance. 
+                I love a good sweater and a hot drink, but I don't love the pressure to make every moment Instagram-worthy.
+            </p>
+            <p class="section-text" style="text-align: center; max-width: 700px; margin: 2rem auto 0;">
+                This series is for everyone who wants to enjoy autumn without the exhaustion.
+            </p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: How much does it cost?</div>
+                <div class="faq-answer">A: Just $1.99 for all 25 days of emails, printables, and permission slips. Less than a latte for an entire season of permission and peace.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: When does it start?</div>
+                <div class="faq-answer">A: September 15, 2026. Sign up now and your first email arrives immediately.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: What if I sign up after September 15?</div>
+                <div class="faq-answer">A: You'll start from Day 1 and receive one email per day until you've gotten all 25.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I share this with friends?</div>
+                <div class="faq-answer">A: Please do! Send them to this page to sign up.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: What if I want to unsubscribe?</div>
+                <div class="faq-answer">A: Every email has an unsubscribe link. No hard feelings.</div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <div class="email-signup">
+                <h2>Ready for an autumn without the pressure?</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 2.5rem;">Starts September 15 · Just $1.99</p>
+                <a href="#signup" class="hero-cta" style="background: white; color: var(--amber); border: 3px solid white;">Get Started for $1.99</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Noella Chase Designz. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Made with 🍂 in Alberta, Canada</p>
+    </footer>
+
+    <!-- MailerLite Universal Script -->
+    <script>
+        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+        ml('account', '1145099');
+    </script>
+</body>
+</html>

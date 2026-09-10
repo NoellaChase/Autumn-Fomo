@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Personalized PDFs for Noella</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fef9f3 0%, #fff5eb 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2d2a26;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .pdf-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .pdf-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2d2a26;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pdf-container iframe,
+        .pdf-container embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #e07a3d 0%, #e55a2b 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .note {
+            background: #f5f0e8;
+            border-left: 4px solid #c9b037;
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Personalized PDFs Ready!</h1>
+        <p class="subtitle">Generated for: <strong>Noella</strong></p>
+
+        <div class="note">
+            <strong>Note:</strong> These are the actual PDFs that buyers receive. Their name is automatically added to each template when they complete purchase.
+        </div>
+
+        <!-- Instagram PDF -->
+        <div class="pdf-section">
+            <h2>📸 Instagram Permission Slip</h2>
+            <div id="instagram-container" class="pdf-container">
+                <div class="loading">Loading personalized Instagram template...</div>
+            </div>
+            <a id="instagram-download" href="#" class="download-btn" download>Download Instagram PDF</a>
+        </div>
+
+        <!-- Facebook PDF -->
+        <div class="pdf-section">
+            <h2>📘 Facebook Permission Slip</h2>
+            <div id="facebook-container" class="pdf-container">
+                <div class="loading">Loading personalized Facebook template...</div>
+            </div>
+            <a id="facebook-download" href="#" class="download-btn" download>Download Facebook PDF</a>
+        </div>
+
+        <!-- Certificate PDF -->
+        <div class="pdf-section">
+            <h2>📜 Official Certificate</h2>
+            <div id="certificate-container" class="pdf-container">
+                <div class="loading">Loading personalized certificate...</div>
+            </div>
+            <a id="certificate-download" href="#" class="download-btn" download>Download Certificate PDF</a>
+        </div>
+    </div>
+
+    <script>
+        // Generate test PDFs on page load
+        async function generatePDFs() {
+            try {
+                const response = await fetch('/api/generate-personalized-pdfs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        firstName: 'Noella',
+                        email: 'demo@noellachasedesignz.ca'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Function to create blob URL from base64
+                    function createBlobUrl(base64Data, filename) {
+                        const byteCharacters = atob(base64Data);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        const blob = new Blob([byteArray], { type: 'application/pdf' });
+                        return URL.createObjectURL(blob);
+                    }
+
+                    // Instagram PDF
+                    const instagramUrl = createBlobUrl(data.pdfs.instagram.data, data.pdfs.instagram.filename);
+                    document.getElementById('instagram-container').innerHTML = 
+                        `<embed src="${instagramUrl}" type="application/pdf">`;
+                    document.getElementById('instagram-download').href = instagramUrl;
+
+                    // Facebook PDF
+                    const facebookUrl = createBlobUrl(data.pdfs.facebook.data, data.pdfs.facebook.filename);
+                    document.getElementById('facebook-container').innerHTML = 
+                        `<embed src="${facebookUrl}" type="application/pdf">`;
+                    document.getElementById('facebook-download').href = facebookUrl;
+
+                    // Certificate PDF
+                    const certUrl = createBlobUrl(data.pdfs.certificate.data, data.pdfs.certificate.filename);
+                    document.getElementById('certificate-container').innerHTML = 
+                        `<embed src="${certUrl}" type="application/pdf">`;
+                    document.getElementById('certificate-download').href = certUrl;
+                } else {
+                    console.error('Error generating PDFs:', data);
+                    document.querySelectorAll('.pdf-container').forEach(el => {
+                        el.innerHTML = '<div class="loading">Error loading PDFs. Please refresh.</div>';
+                    });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelectorAll('.pdf-container').forEach(el => {
+                    el.innerHTML = '<div class="loading">Error loading PDFs. Please refresh.</div>';
+                });
+            }
+        }
+
+        // Generate PDFs when page loads
+        generatePDFs();
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Story Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            font-family: 'Arial', sans-serif;
+        }
+        .story-container {
+            width: 375px;
+            height: 667px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd93d 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .story-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+        .sparkles {
+            font-size: 40px;
+            margin-bottom: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        .officially {
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .doing-nothing {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .today {
+            font-size: 36px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .name-box {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px 40px;
+            margin: 30px 0;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .name-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        .name-input {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            background: transparent;
+            border: none;
+            text-align: center;
+            width: 100%;
+            outline: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .name-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .badge {
+            display: inline-block;
+            background: white;
+            color: #ff6b35;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+        .logo {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .sticker {
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.3;
+        }
+        .sticker-1 { top: 50px; left: 30px; transform: rotate(-20deg); }
+        .sticker-2 { top: 80px; right: 40px; transform: rotate(15deg); }
+        .sticker-3 { bottom: 100px; left: 20px; transform: rotate(10deg); }
+        .sticker-4 { bottom: 150px; right: 30px; transform: rotate(-10deg); }
+        
+        /* Alternative color schemes */
+        .alt-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .alt-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .alt-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Template -->
+    <div class="story-container">
+        <div class="sticker sticker-1">✨</div>
+        <div class="sticker sticker-2">🌞</div>
+        <div class="sticker sticker-3">💆</div>
+        <div class="sticker sticker-4">🧘</div>
+        
+        <div class="content">
+            <div class="sparkles">✨✨✨</div>
+            <div class="officially">OFFICIALLY</div>
+            <div class="doing-nothing">doing nothing</div>
+            <div class="today">TODAY</div>
+            
+            <div class="name-box">
+                <div class="name-label">Permission granted to</div>
+                <input type="text" class="name-input" placeholder="Your Name" value="">
+            </div>
+            
+            <div class="badge">#AutumnUnrushed</div>
+        </div>
+        
+        <div class="logo">Noella Chase Designz</div>
+    </div>
+</body>
+</html>

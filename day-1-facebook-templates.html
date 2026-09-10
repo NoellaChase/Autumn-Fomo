@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autumn Unrushed - Facebook Templates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Facebook Story Template (1080x1920) */
+        .fb-story {
+            width: 375px;
+            height: 667px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd93d 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .fb-story::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        .fb-story-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+        .fb-story .sparkles {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .fb-story .officially {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+        .fb-story .doing-nothing {
+            font-size: 28px;
+            font-weight: 500;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .fb-story .today {
+            font-size: 42px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .fb-story .name-box {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px 40px;
+            margin: 25px 0;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .fb-story .name-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        .fb-story .name-input {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            background: transparent;
+            border: none;
+            text-align: center;
+            width: 100%;
+            outline: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .fb-story .badge {
+            display: inline-block;
+            background: white;
+            color: #ff6b35;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .fb-story .logo {
+            position: absolute;
+            bottom: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        /* Facebook Feed Post (1200x630) */
+        .fb-feed {
+            width: 600px;
+            height: 315px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .fb-feed::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+        }
+        .fb-feed-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 60%;
+        }
+        .fb-feed .officially {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        .fb-feed .subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 10px 0;
+            opacity: 0.95;
+        }
+        .fb-feed .badge {
+            display: inline-block;
+            background: white;
+            color: #ff6b35;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .fb-feed .graphic {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 120px;
+            opacity: 0.9;
+        }
+        .fb-feed .logo {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Facebook Square Post (1080x1080) */
+        .fb-square {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .fb-square-content {
+            text-align: center;
+            color: white;
+        }
+        .fb-square .emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        .fb-square .title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+        .fb-square .subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .fb-square .cta {
+            background: white;
+            color: #764ba2;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .template-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .dimensions {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Autumn Unrushed - Facebook Templates (Day 1)</h1>
+    
+    <!-- Facebook Story Template -->
+    <div class="template-section">
+        <h2>📱 Facebook Story (1080x1920)</h2>
+        <div class="fb-story">
+            <div class="fb-story-content">
+                <div class="sparkles">✨✨✨</div>
+                <div class="officially">OFFICIALLY</div>
+                <div class="doing-nothing">doing nothing</div>
+                <div class="today">TODAY</div>
+                
+                <div class="name-box">
+                    <div class="name-label">Permission granted to</div>
+                    <input type="text" class="name-input" placeholder="Your Name" value="">
+                </div>
+                
+                <div class="badge">#AutumnUnrushed</div>
+            </div>
+            <div class="logo">Noella Chase Designz</div>
+        </div>
+        <p class="dimensions">Dimensions: 1080 x 1920px (9:16 ratio)</p>
+    </div>
+    
+    <!-- Facebook Feed Post -->
+    <div class="template-section">
+        <h2>📘 Facebook Feed Post (1200x630)</h2>
+        <div class="fb-feed">
+            <div class="fb-feed-content">
+                <div class="officially">OFFICIALLY DOING NOTHING TODAY</div>
+                <div class="subtitle">I give myself permission to opt out of the busy autumn.</div>
+                <div class="badge">#AutumnUnrushed</div>
+            </div>
+            <div class="graphic">🧘‍♀️</div>
+            <div class="logo">Noella Chase Designz</div>
+        </div>
+        <p class="dimensions">Dimensions: 1200 x 630px (1.91:1 ratio)</p>
+    </div>
+    
+    <!-- Facebook Square Post -->
+    <div class="template-section">
+        <h2>⬜ Facebook Square Post (1080x1080)</h2>
+        <div class="fb-square">
+            <div class="fb-square-content">
+                <div class="emoji">📜</div>
+                <div class="title">PERMISSION<br>GRANTED</div>
+                <div class="subtitle">To do absolutely nothing today</div>
+                <div class="cta">Join Autumn Unrushed</div>
+            </div>
+        </div>
+        <p class="dimensions">Dimensions: 1080 x 1080px (1:1 ratio)</p>
+    </div>
+</body>
+</html>
