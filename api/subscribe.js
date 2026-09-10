@@ -85,7 +85,7 @@ export default async function handler(req, res) {
             name: firstName,
             certificate_url: certificateUrl || ''
           },
-          groups: [mlGroupId]
+          groups: [parseInt(mlGroupId)]
         };
 
         const mlResponse = await fetch('https://connect.mailerlite.com/api/subscribers', {
