@@ -1,5 +1,5 @@
 // API endpoint to subscribe Autumn FOMO buyers to Global Control, MailerLite, and generate certificate
-import { google } from 'googleapis';
+import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
@@ -32,11 +32,16 @@ export default async function handler(req, res) {
   };
 
   try {
-    // 1. Use Google Drive Certificate Link
-    // Certificate stored at: https://drive.google.com/file/d/1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o/view
-    const certificateUrl = 'https://drive.google.com/uc?export=download&id=1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o';
-    results.certificate = true;
-    results.certificateUrl = certificateUrl;
+    // 1. Generate Personalized Certificate and Upload to Google Drive
+    let certificateUrl = null;
+    try {
+      certificateUrl = await generateAndUploadCertificate(firstName);
+      results.certificate = true;
+      results.certificateUrl = certificateUrl;
+    } catch (certError) {
+      console.error('Certificate generation error:', certError);
+      results.certificateError = certError.message;
+    }
 
     // 2. Add to Global Control
     const gcApiKey = process.env.GLOBAL_CONTROL_API_KEY;
@@ -199,131 +204,100 @@ Note: Welcome email with certificate will be sent via MailerLite automation`;
 
 // Generate personalized certificate and upload to Google Drive
 async function generateAndUploadCertificate(firstName) {
-  // For now, return a placeholder certificate URL
-  // The actual certificate generation with text overlay requires a more complex setup
-  // We'll create a simple text-based certificate or use a pre-generated template
-  
-  const outputDir = path.join('/tmp', 'certificates');
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-  
-  const outputPath = path.join(outputDir, `autumn-fomo-certificate-${Date.now()}.jpg`);
-  
-  // Copy template and we'll add text later
-  const templatePath = path.join(process.cwd(), 'public', 'autumn-certificate-template.jpg');
-  
-  // Check if template exists
-  if (!fs.existsSync(templatePath)) {
-    console.log('Certificate template not found, skipping certificate generation');
-    return null;
-  }
-  
-  fs.copyFileSync(templatePath, outputPath);
-  
-  // Try to upload to Google Drive, but don't fail if it doesn't work
-  try {
-    const driveUrl = await uploadToGoogleDrive(outputPath, firstName);
-    // Clean up temp file
-    fs.unlinkSync(outputPath);
-    return driveUrl;
-  } catch (error) {
-    console.log('Google Drive upload failed, returning local path:', error.message);
-    // Clean up temp file
-    fs.unlinkSync(outputPath);
-    // Return a default certificate URL or null
-    return null;
-  }
+  return new Promise((resolve, reject) => {
+    const outputDir = path.join('/tmp', 'certificates');
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    const safeName = firstName.replace(/[^a-zA-Z0-9]/g, '_');
+    const outputPath = path.join(outputDir, `certificate_${safeName}_${Date.now()}.jpg`);
+    
+    // Run Python script to generate certificate
+    const pythonScript = '/root/.openclaw/workspace/autumn-fomo/certificate/generate_personalized_certificate.py';
+    const pythonProcess = spawn('python3', [pythonScript, firstName, outputPath]);
+    
+    let stdout = '';
+    let stderr = '';
+    
+    pythonProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+    
+    pythonProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+    
+    pythonProcess.on('close', async (code) => {
+      if (code !== 0) {
+        console.error('Certificate generation failed:', stderr);
+        reject(new Error(`Certificate generation failed: ${stderr}`));
+        return;
+      }
+      
+      console.log('Certificate generated:', stdout);
+      
+      // Check if file was created
+      if (!fs.existsSync(outputPath)) {
+        reject(new Error('Certificate file was not created'));
+        return;
+      }
+      
+      // Upload to Google Drive using OAuth
+      try {
+        const driveUrl = await uploadToGoogleDrive(outputPath, firstName);
+        // Clean up temp file
+        fs.unlinkSync(outputPath);
+        resolve(driveUrl);
+      } catch (error) {
+        console.error('Google Drive upload failed:', error.message);
+        // Clean up temp file
+        if (fs.existsSync(outputPath)) {
+          fs.unlinkSync(outputPath);
+        }
+        reject(error);
+      }
+    });
+  });
 }
 
-// Upload file to Google Drive and make it publicly viewable
+// Upload file to Google Drive using OAuth
 async function uploadToGoogleDrive(filePath, firstName) {
-  const credentialsBase64 = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-  
-  let credentials;
-  if (credentialsBase64) {
-    const credentialsJson = Buffer.from(credentialsBase64, 'base64').toString('utf8');
-    credentials = JSON.parse(credentialsJson);
-  } else {
-    const credentialsPath = process.env.GOOGLE_SERVICE_ACCOUNT_PATH || '/root/.openclaw/workspace/credentials/gemini-notebook-service-account.json';
-    credentials = require(credentialsPath);
-  }
-  
-  // Use domain-wide delegation to impersonate Noella's account
-  const auth = new google.auth.GoogleAuth({
-    credentials: credentials,
-    scopes: ['https://www.googleapis.com/auth/drive'],
-    clientOptions: {
-      subject: 'noellachasedesignz@gmail.com'
-    }
-  });
-  
-  const drive = google.drive({ version: 'v3', auth });
-  
-  // Find or create Autumn FOMO Certificates folder
-  const folderName = 'Autumn FOMO Certificates';
-  let folderId = null;
-  
-  const folderResponse = await drive.files.list({
-    q: `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and trashed=false`,
-    spaces: 'drive',
-    fields: 'files(id, name)'
-  });
-  
-  if (folderResponse.data.files.length > 0) {
-    folderId = folderResponse.data.files[0].id;
-  } else {
-    const folderMetadata = {
-      name: folderName,
-      mimeType: 'application/vnd.google-apps.folder'
-    };
-    const folder = await drive.files.create({
-      resource: folderMetadata,
-      fields: 'id'
+  return new Promise((resolve, reject) => {
+    const pythonScript = '/root/.openclaw/workspace/autumn-fomo/drive-oauth-upload.py';
+    const pythonProcess = spawn('python3', ['-c', `
+import sys
+sys.path.insert(0, '/root/.openclaw/workspace/autumn-fomo')
+from drive_oauth_upload import upload_certificate_to_drive
+
+result = upload_certificate_to_drive('${filePath}', '${firstName.replace(/'/g, "\\'")}')
+print(result['direct_link'])
+`]);
+    
+    let stdout = '';
+    let stderr = '';
+    
+    pythonProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
     });
-    folderId = folder.data.id;
-  }
-  
-  // Share folder with Noella's personal email
-  try {
-    await drive.permissions.create({
-      fileId: folderId,
-      resource: {
-        role: 'writer',
-        type: 'user',
-        emailAddress: 'noellachasedesignz@gmail.com'
-      },
-      sendNotificationEmail: false
+    
+    pythonProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
     });
-  } catch (e) {
-    console.log('Folder may already be shared');
-  }
-  
-  // Upload certificate file
-  const fileMetadata = {
-    name: `Autumn-FOMO-Certificate-${firstName}-${Date.now()}.jpg`,
-    parents: [folderId]
-  };
-  
-  const media = {
-    mimeType: 'image/jpeg',
-    body: fs.createReadStream(filePath)
-  };
-  
-  const file = await drive.files.create({
-    resource: fileMetadata,
-    media: media,
-    fields: 'id'
+    
+    pythonProcess.on('close', (code) => {
+      if (code !== 0) {
+        console.error('Drive upload failed:', stderr);
+        reject(new Error(`Drive upload failed: ${stderr}`));
+        return;
+      }
+      
+      const driveUrl = stdout.trim();
+      if (driveUrl && driveUrl.startsWith('http')) {
+        resolve(driveUrl);
+      } else {
+        reject(new Error('Invalid drive URL returned'));
+      }
+    });
   });
-  
-  // Make file publicly viewable
-  await drive.permissions.create({
-    fileId: file.data.id,
-    resource: {
-      role: 'reader',
-      type: 'anyone'
-    }
-  });
-  
-  return `https://drive.google.com/file/d/${file.data.id}/view?usp=sharing`;
 }
