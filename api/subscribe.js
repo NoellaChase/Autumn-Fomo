@@ -1,27 +1,7 @@
-// API endpoint to subscribe Autumn FOMO buyers to Global Control, MailerLite, and provide certificate
+// API endpoint to subscribe Autumn FOMO buyers to Global Control, MailerLite, and generate certificate
+import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-
-// Pre-generated certificates - these are uploaded to Google Drive and ready to use
-const PRE_GENERATED_CERTIFICATES = {
-  'Friend': 'https://drive.google.com/uc?export=download&id=13yfQBWQ9UdwkOyW7uzU2GxeDEjnAq7QM',
-  'Valued Customer': 'https://drive.google.com/uc?export=download&id=1IdK5wMqoy2XgBD9JTjvjgpGlCp6fc_h_',
-  'Beautiful Soul': 'https://drive.google.com/uc?export=download&id=1oveZJy_2WhpuQAscTt6Z8kj0YbXFpIdS',
-  'Amazing Person': 'https://drive.google.com/uc?export=download&id=13FCZZGRTns6XLJk1BerOrL0PRGUJ01nO',
-  'Wonderful You': 'https://drive.google.com/uc?export=download&id=1d7zsRmyl9O7WBgHHRms1S4n75uZ4KA7p'
-};
-
-// Default certificate if no match found
-const DEFAULT_CERTIFICATE = 'https://drive.google.com/uc?export=download&id=1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o';
-
-function getCertificateForName(firstName) {
-  // Simple matching - pick a certificate based on name length or random
-  const names = Object.keys(PRE_GENERATED_CERTIFICATES);
-  
-  // Use name length to pick a certificate (deterministic)
-  const index = firstName.length % names.length;
-  return PRE_GENERATED_CERTIFICATES[names[index]];
-}
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -52,10 +32,22 @@ export default async function handler(req, res) {
   };
 
   try {
-    // 1. Get pre-generated certificate
-    const certificateUrl = getCertificateForName(firstName);
-    results.certificate = true;
-    results.certificateUrl = certificateUrl;
+    // 1. Generate Personalized Certificate and Upload to Google Drive
+    // This runs asynchronously - we'll return immediately and process in background
+    generateAndUploadCertificate(firstName).then(certificateUrl => {
+      console.log('Certificate generated:', certificateUrl);
+      
+      // Update Global Control with certificate URL
+      updateGlobalControlWithCertificate(email, certificateUrl);
+      
+      // Update MailerLite with certificate URL
+      updateMailerLiteWithCertificate(email, certificateUrl);
+    }).catch(err => {
+      console.error('Certificate generation failed:', err);
+    });
+
+    // Use a temporary certificate URL until generation completes
+    const tempCertificateUrl = 'https://drive.google.com/uc?export=download&id=1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o';
 
     // 2. Add to Global Control
     const gcApiKey = process.env.GLOBAL_CONTROL_API_KEY;
@@ -75,7 +67,7 @@ export default async function handler(req, res) {
             source: source || 'autumn-fomo',
             paymentId: paymentId || 'unknown',
             purchaseDate: new Date().toISOString(),
-            certificateUrl: certificateUrl
+            certificateUrl: tempCertificateUrl
           })
         });
         results.globalControl = gcResponse.ok;
@@ -94,7 +86,7 @@ export default async function handler(req, res) {
           email: email,
           fields: {
             name: firstName,
-            certificate_url: certificateUrl
+            certificate_url: tempCertificateUrl
           }
         };
 
@@ -138,7 +130,7 @@ export default async function handler(req, res) {
             body: JSON.stringify({
               fields: {
                 name: firstName,
-                certificate_url: certificateUrl
+                certificate_url: tempCertificateUrl
               }
             })
           });
@@ -164,8 +156,7 @@ export default async function handler(req, res) {
 
 Global Control: ${results.globalControl ? '✅' : '❌'}
 MailerLite: ${results.mailerlite ? '✅' : '❌'}
-Certificate: ${results.certificate ? '✅' : '❌'}
-<a href="${certificateUrl}">View Certificate</a>
+Certificate: ⏳ Generating...
 
 Note: Welcome email with certificate will be sent via MailerLite automation`;
 
@@ -186,8 +177,8 @@ Note: Welcome email with certificate will be sent via MailerLite automation`;
 
     return res.status(200).json({ 
       success: true, 
-      message: 'Subscribed successfully - Welcome email with certificate will be sent via MailerLite',
-      certificateUrl: certificateUrl,
+      message: 'Subscribed successfully - Certificate is being generated and will be emailed shortly',
+      certificateUrl: tempCertificateUrl,
       services: results
     });
 
@@ -197,5 +188,128 @@ Note: Welcome email with certificate will be sent via MailerLite automation`;
       success: false, 
       error: 'Internal server error'
     });
+  }
+}
+
+// Background functions
+async function generateAndUploadCertificate(firstName) {
+  return new Promise((resolve, reject) => {
+    const outputDir = path.join('/tmp', 'certificates');
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    const safeName = firstName.replace(/[^a-zA-Z0-9]/g, '_');
+    const outputPath = path.join(outputDir, `certificate_${safeName}_${Date.now()}.jpg`);
+    
+    const pythonScript = '/root/.openclaw/workspace/autumn-fomo/certificate/generate_personalized_certificate.py';
+    const pythonProcess = spawn('python3', [pythonScript, firstName, outputPath]);
+    
+    let stdout = '';
+    let stderr = '';
+    
+    pythonProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+    
+    pythonProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+    
+    pythonProcess.on('close', async (code) => {
+      if (code !== 0) {
+        reject(new Error(`Certificate generation failed: ${stderr}`));
+        return;
+      }
+      
+      if (!fs.existsSync(outputPath)) {
+        reject(new Error('Certificate file was not created'));
+        return;
+      }
+      
+      try {
+        const driveUrl = await uploadToGoogleDrive(outputPath, firstName);
+        fs.unlinkSync(outputPath);
+        resolve(driveUrl);
+      } catch (error) {
+        if (fs.existsSync(outputPath)) {
+          fs.unlinkSync(outputPath);
+        }
+        reject(error);
+      }
+    });
+  });
+}
+
+async function uploadToGoogleDrive(filePath, firstName) {
+  return new Promise((resolve, reject) => {
+    const pythonProcess = spawn('python3', ['-c', `
+import sys
+sys.path.insert(0, '/root/.openclaw/workspace/autumn-fomo')
+from drive_oauth_upload import upload_certificate_to_drive
+result = upload_certificate_to_drive('${filePath}', '${firstName.replace(/'/g, "\\'")}')
+print(result['direct_link'])
+`]);
+    
+    let stdout = '';
+    let stderr = '';
+    
+    pythonProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+    
+    pythonProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+    
+    pythonProcess.on('close', (code) => {
+      if (code !== 0) {
+        reject(new Error(`Drive upload failed: ${stderr}`));
+        return;
+      }
+      
+      const driveUrl = stdout.trim();
+      if (driveUrl && driveUrl.startsWith('http')) {
+        resolve(driveUrl);
+      } else {
+        reject(new Error('Invalid drive URL returned'));
+      }
+    });
+  });
+}
+
+async function updateGlobalControlWithCertificate(email, certificateUrl) {
+  const gcApiKey = process.env.GLOBAL_CONTROL_API_KEY;
+  if (!gcApiKey) return;
+  
+  try {
+    // Note: This would need the contact ID to update
+    // For now, we'll log it
+    console.log(`Would update GC contact ${email} with certificate: ${certificateUrl}`);
+  } catch (e) {
+    console.error('Failed to update GC with certificate:', e);
+  }
+}
+
+async function updateMailerLiteWithCertificate(email, certificateUrl) {
+  const mlApiKey = process.env.MAILERLITE_API_KEY;
+  if (!mlApiKey) return;
+  
+  try {
+    await fetch(`https://connect.mailerlite.com/api/subscribers/${email}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${mlApiKey}`
+      },
+      body: JSON.stringify({
+        fields: {
+          certificate_url: certificateUrl
+        }
+      })
+    });
+    console.log(`Updated MailerLite subscriber ${email} with certificate`);
+  } catch (e) {
+    console.error('Failed to update MailerLite with certificate:', e);
   }
 }
