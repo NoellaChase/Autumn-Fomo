@@ -2,10 +2,10 @@
 
 // Pre-generated certificates - uploaded to Google Drive and ready to use
 const PRE_GENERATED_CERTIFICATES = {
-  'You, My Friend': 'https://drive.google.com/uc?export=download&id=17jfob8DJEfLG4IVyN6OHvJByeie-L4Kb',
-  'You, a Beautiful Soul': 'https://drive.google.com/uc?export=download&id=1TRLxFRPpm0xWZiYSCxmaKjXi0lv3YYTt',
-  'You, the Amazing Person': 'https://drive.google.com/uc?export=download&id=13PLnTWGDc9KfaUIZh2y6bTqTGvE9sIgK',
-  'Wonderful You': 'https://drive.google.com/uc?export=download&id=1MKxUgBgRADFVhSp8gUeJNHz9FZfH9aR3'
+  'You, My Friend': 'https://drive.google.com/uc?export=download&id=1HyTyjdDwgfppbL4vZFyJ76bmNmFJHaNh',
+  'You, a Beautiful Soul': 'https://drive.google.com/uc?export=download&id=1JfTRvYpoNoMLlV8z6Lv1nLxCzLYTQPxC',
+  'You, the Amazing Person': 'https://drive.google.com/uc?export=download&id=1z2IlTtC4f8o4XlY5wW0cBQiaxqChBCFu',
+  'Wonderful You': 'https://drive.google.com/uc?export=download&id=1bgYCDvWJNABR195i-vOELzIlpoCl4jed'
 };
 
 // Default certificate if needed
