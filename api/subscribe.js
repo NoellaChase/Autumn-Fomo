@@ -57,6 +57,7 @@ export default async function handler(req, res) {
             firstName: firstName,
             email: email,
             tag: 'Buyer-AutumnFOMO',
+            tagId: '6aa41c474c80625f72dc99e6',
             source: source || 'autumn-fomo',
             paymentId: paymentId || 'unknown',
             purchaseDate: new Date().toISOString(),
@@ -235,6 +236,7 @@ async function generateAndUploadCertificate(firstName) {
     console.log('Google Drive upload failed, returning local path:', error.message);
     // Clean up temp file
     fs.unlinkSync(outputPath);
+    // Return a default certificate URL or null
     return null;
   }
 }
