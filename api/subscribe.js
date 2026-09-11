@@ -32,16 +32,11 @@ export default async function handler(req, res) {
   };
 
   try {
-    // 1. Generate Personalized Certificate
-    let certificateUrl = null;
-    try {
-      certificateUrl = await generateAndUploadCertificate(firstName);
-      results.certificate = true;
-      results.certificateUrl = certificateUrl;
-    } catch (certError) {
-      console.error('Certificate generation error:', certError);
-      results.certificateError = certError.message;
-    }
+    // 1. Use Google Drive Certificate Link
+    // Certificate stored at: https://drive.google.com/file/d/1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o/view
+    const certificateUrl = 'https://drive.google.com/uc?export=download&id=1et_XftXKOkjq3KCFZlz1KFPBSpgaQY1o';
+    results.certificate = true;
+    results.certificateUrl = certificateUrl;
 
     // 2. Add to Global Control
     const gcApiKey = process.env.GLOBAL_CONTROL_API_KEY;
